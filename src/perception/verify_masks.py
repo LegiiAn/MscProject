@@ -1,5 +1,5 @@
 import os
-# Keep OpenEXR enabled just in case boundaries use it
+# Keep OpenEXR enabled 
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 
 import cv2
