@@ -12,7 +12,7 @@ from models.cleargrasp_net import ClearGraspDualNet
 
 def train():
     # --- Configuration ---
-    DATA_DIR = Path(r"C:\Users\m_vit\Documents\MscProject\data\cleargrasp_dataset\cleargrasp-dataset-train\square-plastic-bottle-train")
+    DATA_DIR = Path.home() / "MscProject" / "data" / "cleargrasp_dataset" / "cleargrasp-dataset-train" / "square-plastic-bottle-train"
     CHECKPOINT_DIR = Path("checkpoints")
     CHECKPOINT_DIR.mkdir(exist_ok=True)
     
@@ -27,7 +27,7 @@ def train():
     # --- Data Loading ---
     print("Loading multi-modal dataset...")
     dataset = ClearGraspPerceptionDataset(base_dir=DATA_DIR)
-    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0, drop_last=True)
     print(f"Total batches per epoch: {len(dataloader)}")
 
     # --- Model, Optimizers, & Loss Functions ---

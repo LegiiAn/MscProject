@@ -79,7 +79,7 @@ if __name__ == "__main__":
     # trust_remote_code is required for OpenVLA's custom image processing logic
     proc = AutoProcessor.from_pretrained(MODEL_ID, trust_remote_code=True)
     
-    TEST_DIR = r"C:\Users\m_vit\Documents\MscProject\data\cleargrasp_dataset\cleargrasp-dataset-train\square-plastic-bottle-train"
+    TEST_DIR = r"data/cleargrasp_dataset/cleargrasp-dataset-train/square-plastic-bottle-train"
     
     try:
         dataset = OpenVLADataset(data_dir=TEST_DIR, processor=proc)

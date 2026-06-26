@@ -4,3 +4,8 @@ __pycache__/
 data/
 checkpoints/
 .vscode/
+vla_checkpoints/
+dissertation/
+vla_comprehensive_evaluation.pdf
+perception_surface_reconstruction_matrix.pdf
+ARCHIVE/
