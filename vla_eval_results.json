@@ -1,0 +1,398 @@
+{
+  "lora_best": {
+    "action_token_accuracy": 54.85714285714286,
+    "spatial_l1_mean": 37.13714285714286,
+    "spatial_l1_median": 26.642857142857146,
+    "x_l1_mean": 90.0,
+    "y_l1_mean": 35.66,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_final": {
+    "action_token_accuracy": 54.81049562682215,
+    "spatial_l1_mean": 34.795918367346935,
+    "spatial_l1_median": 28.0,
+    "x_l1_mean": 70.89795918367346,
+    "y_l1_mean": 36.55102040816327,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_500": {
+    "action_token_accuracy": 3.571428571428571,
+    "spatial_l1_mean": 123.67857142857143,
+    "spatial_l1_median": 87.14285714285714,
+    "x_l1_mean": 83.0,
+    "y_l1_mean": 156.75,
+    "n_samples": 4,
+    "parse_failures": 46
+  },
+  "lora_epoch_1_step_1000": {
+    "action_token_accuracy": 32.142857142857146,
+    "spatial_l1_mean": 3.968293690516282e+16,
+    "spatial_l1_median": 43.42857142857143,
+    "x_l1_mean": 2.777805583361392e+17,
+    "y_l1_mean": 70.16666666666667,
+    "n_samples": 36,
+    "parse_failures": 14
+  },
+  "lora_epoch_1_step_1500": {
+    "action_token_accuracy": 41.42857142857143,
+    "spatial_l1_mean": 123.25714285714288,
+    "spatial_l1_median": 34.5,
+    "x_l1_mean": 583.44,
+    "y_l1_mean": 53.28,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_2000": {
+    "action_token_accuracy": 51.488095238095234,
+    "spatial_l1_mean": 492.0714285714285,
+    "spatial_l1_median": 32.71428571428571,
+    "x_l1_mean": 3036.7083333333335,
+    "y_l1_mean": 253.0625,
+    "n_samples": 48,
+    "parse_failures": 2
+  },
+  "lora_epoch_1_step_2500": {
+    "action_token_accuracy": 50.72886297376093,
+    "spatial_l1_mean": 370.3731778425656,
+    "spatial_l1_median": 31.428571428571427,
+    "x_l1_mean": 2388.5102040816328,
+    "y_l1_mean": 62.755102040816325,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_3000": {
+    "action_token_accuracy": 50.72886297376093,
+    "spatial_l1_mean": 368.06997084548107,
+    "spatial_l1_median": 34.57142857142857,
+    "x_l1_mean": 2374.8571428571427,
+    "y_l1_mean": 51.755102040816325,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_3500": {
+    "action_token_accuracy": 55.39358600583091,
+    "spatial_l1_mean": 77.30903790087461,
+    "spatial_l1_median": 31.428571428571427,
+    "x_l1_mean": 349.40816326530614,
+    "y_l1_mean": 55.795918367346935,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_4000": {
+    "action_token_accuracy": 56.547619047619044,
+    "spatial_l1_mean": 41.973214285714285,
+    "spatial_l1_median": 27.857142857142858,
+    "x_l1_mean": 116.58333333333333,
+    "y_l1_mean": 46.8125,
+    "n_samples": 48,
+    "parse_failures": 2
+  },
+  "lora_epoch_1_step_4500": {
+    "action_token_accuracy": 55.05952380952381,
+    "spatial_l1_mean": 44.92857142857144,
+    "spatial_l1_median": 28.785714285714285,
+    "x_l1_mean": 96.64583333333333,
+    "y_l1_mean": 52.354166666666664,
+    "n_samples": 48,
+    "parse_failures": 2
+  },
+  "lora_epoch_1_step_5000": {
+    "action_token_accuracy": 51.60349854227405,
+    "spatial_l1_mean": 46.35568513119534,
+    "spatial_l1_median": 29.714285714285715,
+    "x_l1_mean": 116.06122448979592,
+    "y_l1_mean": 41.816326530612244,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_5500": {
+    "action_token_accuracy": 54.285714285714285,
+    "spatial_l1_mean": 70.92571428571428,
+    "spatial_l1_median": 29.285714285714285,
+    "x_l1_mean": 314.58,
+    "y_l1_mean": 45.3,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_6000": {
+    "action_token_accuracy": 55.10204081632652,
+    "spatial_l1_mean": 37.565597667638485,
+    "spatial_l1_median": 29.0,
+    "x_l1_mean": 81.36734693877551,
+    "y_l1_mean": 40.83673469387755,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_6500": {
+    "action_token_accuracy": 55.42857142857143,
+    "spatial_l1_mean": 45.47142857142857,
+    "spatial_l1_median": 26.857142857142858,
+    "x_l1_mean": 158.72,
+    "y_l1_mean": 29.24,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_7000": {
+    "action_token_accuracy": 55.714285714285715,
+    "spatial_l1_mean": 36.42857142857143,
+    "spatial_l1_median": 25.92857142857143,
+    "x_l1_mean": 91.24,
+    "y_l1_mean": 32.94,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_7500": {
+    "action_token_accuracy": 53.06122448979592,
+    "spatial_l1_mean": 36.28279883381924,
+    "spatial_l1_median": 28.285714285714285,
+    "x_l1_mean": 74.16326530612245,
+    "y_l1_mean": 38.0,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_8000": {
+    "action_token_accuracy": 54.518950437317784,
+    "spatial_l1_mean": 36.12536443148688,
+    "spatial_l1_median": 26.571428571428573,
+    "x_l1_mean": 91.22448979591837,
+    "y_l1_mean": 28.510204081632654,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_8500": {
+    "action_token_accuracy": 57.14285714285714,
+    "spatial_l1_mean": 32.76384839650146,
+    "spatial_l1_median": 26.571428571428573,
+    "x_l1_mean": 69.77551020408163,
+    "y_l1_mean": 35.857142857142854,
+    "n_samples": 49,
+    "parse_failures": 1
+  },
+  "lora_epoch_1_step_9000": {
+    "action_token_accuracy": 57.14285714285714,
+    "spatial_l1_mean": 35.52173913043478,
+    "spatial_l1_median": 26.642857142857142,
+    "x_l1_mean": 93.43478260869566,
+    "y_l1_mean": 30.608695652173914,
+    "n_samples": 46,
+    "parse_failures": 4
+  },
+  "lora_epoch_1_step_9500": {
+    "action_token_accuracy": 56.25,
+    "spatial_l1_mean": 31.059523809523814,
+    "spatial_l1_median": 26.285714285714285,
+    "x_l1_mean": 57.645833333333336,
+    "y_l1_mean": 31.6875,
+    "n_samples": 48,
+    "parse_failures": 2
+  },
+  "lora_epoch_1_step_10000": {
+    "action_token_accuracy": 55.654761904761905,
+    "spatial_l1_mean": 38.032738095238095,
+    "spatial_l1_median": 27.57142857142857,
+    "x_l1_mean": 95.16666666666667,
+    "y_l1_mean": 39.6875,
+    "n_samples": 48,
+    "parse_failures": 2
+  },
+  "lora_epoch_1_step_10500": {
+    "action_token_accuracy": 55.714285714285715,
+    "spatial_l1_mean": 36.05428571428572,
+    "spatial_l1_median": 27.57142857142857,
+    "x_l1_mean": 89.5,
+    "y_l1_mean": 30.6,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_11000": {
+    "action_token_accuracy": 55.42857142857143,
+    "spatial_l1_mean": 28.460000000000004,
+    "spatial_l1_median": 27.42857142857143,
+    "x_l1_mean": 34.62,
+    "y_l1_mean": 32.04,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_11500": {
+    "action_token_accuracy": 56.57142857142857,
+    "spatial_l1_mean": 34.002857142857145,
+    "spatial_l1_median": 28.07142857142857,
+    "x_l1_mean": 76.94,
+    "y_l1_mean": 35.54,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_1_step_12000": {
+    "action_token_accuracy": 57.14285714285714,
+    "spatial_l1_mean": 28.12857142857143,
+    "spatial_l1_median": 26.785714285714285,
+    "x_l1_mean": 37.24,
+    "y_l1_mean": 33.64,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_12500": {
+    "action_token_accuracy": 56.57142857142857,
+    "spatial_l1_mean": 31.40857142857143,
+    "spatial_l1_median": 27.07142857142857,
+    "x_l1_mean": 51.72,
+    "y_l1_mean": 35.26,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_13000": {
+    "action_token_accuracy": 56.85714285714286,
+    "spatial_l1_mean": 27.600000000000005,
+    "spatial_l1_median": 26.5,
+    "x_l1_mean": 32.7,
+    "y_l1_mean": 32.46,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_13500": {
+    "action_token_accuracy": 54.85714285714286,
+    "spatial_l1_mean": 29.985714285714284,
+    "spatial_l1_median": 27.92857142857143,
+    "x_l1_mean": 40.3,
+    "y_l1_mean": 36.48,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_14000": {
+    "action_token_accuracy": 54.85714285714286,
+    "spatial_l1_mean": 37.13714285714286,
+    "spatial_l1_median": 26.642857142857146,
+    "x_l1_mean": 90.0,
+    "y_l1_mean": 35.66,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_14500": {
+    "action_token_accuracy": 54.285714285714285,
+    "spatial_l1_mean": 36.79714285714286,
+    "spatial_l1_median": 27.714285714285715,
+    "x_l1_mean": 73.52,
+    "y_l1_mean": 39.24,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_15000": {
+    "action_token_accuracy": 56.285714285714285,
+    "spatial_l1_mean": 32.279999999999994,
+    "spatial_l1_median": 26.714285714285715,
+    "x_l1_mean": 55.96,
+    "y_l1_mean": 37.56,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_15500": {
+    "action_token_accuracy": 56.00000000000001,
+    "spatial_l1_mean": 31.162857142857145,
+    "spatial_l1_median": 27.285714285714285,
+    "x_l1_mean": 53.68,
+    "y_l1_mean": 34.76,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_16000": {
+    "action_token_accuracy": 55.14285714285714,
+    "spatial_l1_mean": 29.39428571428572,
+    "spatial_l1_median": 26.785714285714285,
+    "x_l1_mean": 33.64,
+    "y_l1_mean": 36.4,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_16500": {
+    "action_token_accuracy": 54.85714285714286,
+    "spatial_l1_mean": 35.63142857142857,
+    "spatial_l1_median": 29.142857142857142,
+    "x_l1_mean": 73.64,
+    "y_l1_mean": 37.08,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_17000": {
+    "action_token_accuracy": 55.42857142857143,
+    "spatial_l1_mean": 28.47714285714286,
+    "spatial_l1_median": 26.5,
+    "x_l1_mean": 30.5,
+    "y_l1_mean": 36.02,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_17500": {
+    "action_token_accuracy": 56.85714285714286,
+    "spatial_l1_mean": 27.162857142857145,
+    "spatial_l1_median": 26.571428571428573,
+    "x_l1_mean": 33.3,
+    "y_l1_mean": 31.38,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_18000": {
+    "action_token_accuracy": 54.85714285714286,
+    "spatial_l1_mean": 32.16857142857143,
+    "spatial_l1_median": 26.714285714285715,
+    "x_l1_mean": 52.08,
+    "y_l1_mean": 39.42,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_18500": {
+    "action_token_accuracy": 54.57142857142857,
+    "spatial_l1_mean": 31.46857142857143,
+    "spatial_l1_median": 26.785714285714285,
+    "x_l1_mean": 50.94,
+    "y_l1_mean": 36.24,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_19000": {
+    "action_token_accuracy": 52.85714285714286,
+    "spatial_l1_mean": 34.817142857142855,
+    "spatial_l1_median": 26.857142857142858,
+    "x_l1_mean": 71.96,
+    "y_l1_mean": 35.76,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_19500": {
+    "action_token_accuracy": 53.142857142857146,
+    "spatial_l1_mean": 34.002857142857145,
+    "spatial_l1_median": 28.07142857142857,
+    "x_l1_mean": 68.82,
+    "y_l1_mean": 33.46,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_20000": {
+    "action_token_accuracy": 54.285714285714285,
+    "spatial_l1_mean": 28.174285714285716,
+    "spatial_l1_median": 26.571428571428573,
+    "x_l1_mean": 33.1,
+    "y_l1_mean": 32.54,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_20500": {
+    "action_token_accuracy": 52.28571428571429,
+    "spatial_l1_mean": 30.180000000000003,
+    "spatial_l1_median": 26.785714285714285,
+    "x_l1_mean": 29.36,
+    "y_l1_mean": 31.86,
+    "n_samples": 50,
+    "parse_failures": 0
+  },
+  "lora_epoch_2_step_21000": {
+    "action_token_accuracy": 53.714285714285715,
+    "spatial_l1_mean": 30.76,
+    "spatial_l1_median": 26.785714285714285,
+    "x_l1_mean": 50.08,
+    "y_l1_mean": 31.44,
+    "n_samples": 50,
+    "parse_failures": 0
+  }
+}
