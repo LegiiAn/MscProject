@@ -11,3 +11,25 @@ Dissertation Handbook ROBOTIC - EECE MSC PGT - Ver 3.0 - March 24 - RM.pdf
 final_thesis_results.tar.gz
 msc_project_lightweight.tar.gz
 raw_backgrounds.tar.gz
+
+# Large files - never commit these
+*.pth
+*.pt
+*.bin
+*.safetensors
+vla_checkpoints*/
+checkpoints/
+data/cleargrasp_dataset/
+data/raw_backgrounds/
+data/processed_dataset*/
+*.tar.gz
+*.exr
+
+# Keep these
+!*.py
+!*.tex
+!*.bib
+!*.pdf
+!*.json
+!*.md
+!*.txt

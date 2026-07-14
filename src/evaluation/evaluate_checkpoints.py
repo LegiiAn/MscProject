@@ -86,6 +86,7 @@ def evaluate_checkpoint(checkpoint_path, val_dataset, processor, device, max_sam
     x_errors = []
     y_errors = []
     parse_failures = 0
+    unique_predictions = set()
 
     with torch.no_grad():
         for idx in range(min(max_samples, len(val_dataset))):
@@ -120,10 +121,11 @@ def evaluate_checkpoint(checkpoint_path, val_dataset, processor, device, max_sam
             outputs = model.generate(
                 input_ids=prompt_ids,
                 pixel_values=pixel_values,
-                max_new_tokens=60,  # 15 is plenty when it uses proper <action_N> tokens
+                max_new_tokens=50,  # 15 is plenty when it uses proper <action_N> tokens
                 do_sample=False,
-                eos_token_id=-1,
+                eos_token_id=processor.tokenizer.eos_token_id,
             )
+
 
             generated_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
             pred_actions = extract_action_values(generated_text)
@@ -134,6 +136,8 @@ def evaluate_checkpoint(checkpoint_path, val_dataset, processor, device, max_sam
                 if idx < 5:
                     print(f"  [DEBUG] Parse fail sample {idx}: ...{generated_text[-150:]}")
                 continue
+
+            unique_predictions.add(tuple(pred_actions[:2]))
 
             total_samples += 1
             gt = np.array(gt_actions)
@@ -164,6 +168,8 @@ def evaluate_checkpoint(checkpoint_path, val_dataset, processor, device, max_sam
             }, f)
         print("[SAVED] vla_detailed_errors.json")
 
+    print(f"\n[DIAGNOSTIC] Unique coordinate pairs predicted: {len(unique_predictions)} / {total_samples}")    
+    
     del model, base_model
     torch.cuda.empty_cache()
 
@@ -191,6 +197,8 @@ def main():
     processor = AutoProcessor.from_pretrained("openvla/openvla-7b", trust_remote_code=True)
 
     val_dataset = OpenVLADataset(data_dir=data_dir, processor=processor, split="val")
+    
+    
 
     # Prioritize evaluating the best checkpoint
     checkpoints = []
