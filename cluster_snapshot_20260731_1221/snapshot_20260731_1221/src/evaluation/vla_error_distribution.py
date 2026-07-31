@@ -28,8 +28,8 @@ import matplotlib.pyplot as plt
 
 def main():
     # Look for a detailed per-sample errors file first
-    errors_file = Path("results/vla_detailed_errors.json")
-    results_file = Path("results/vla_eval_results.json")
+    errors_file = Path("vla_detailed_errors.json")
+    results_file = Path("vla_eval_results.json")
 
     per_sample_l1 = None
     per_sample_x = None

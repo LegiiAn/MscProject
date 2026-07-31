@@ -8,7 +8,7 @@ import scipy.sparse as sparse
 import scipy.sparse.linalg as splinalg
 
 
-def reconstruct_depth_poisson(raw_depth, predicted_normals, predicted_mask, lambda_anchor=1.0):
+def reconstruct_depth_poisson(raw_depth, predicted_normals, predicted_mask, lambda_anchor=100):
     """
     Reconstructs 3D depth by integrating predicted surface normals via
     a sparse least-squares system (Poisson-style depth reconstruction).
@@ -32,8 +32,8 @@ def reconstruct_depth_poisson(raw_depth, predicted_normals, predicted_mask, lamb
     Ny = predicted_normals[:, :, 1]
     Nz = predicted_normals[:, :, 2]
     Nz_safe = np.where(np.abs(Nz) < 1e-5, 1e-5, Nz)
-    p = -Nx / Nz_safe   # dZ/dx
-    q = -Ny / Nz_safe   # dZ/dy
+    p = (-Nx / Nz_safe) / fx   # dZ/dx
+    q = (-Ny / Nz_safe) / fy   # dZ/dy
     
     # 2. Identify anchor vs hole regions
     hole_mask = (predicted_mask > 0) | (raw_depth <= 0)

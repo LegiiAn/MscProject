@@ -1,35 +1,12 @@
-vla_sorting_env/
-__pycache__/
-*.pyc
 data/
 checkpoints/
-.vscode/
 vla_checkpoints/
-dissertation/
+vla_checkpoints_run1/
+vla_sorting_env/
+dissertation/chapters/
+dissertation/frontmatter/
 ARCHIVE/
-Dissertation Handbook ROBOTIC - EECE MSC PGT - Ver 3.0 - March 24 - RM.pdf
-final_thesis_results.tar.gz
-msc_project_lightweight.tar.gz
-raw_backgrounds.tar.gz
-
-# Large files - never commit these
+__pycache__/
 *.pth
-*.pt
-*.bin
-*.safetensors
-vla_checkpoints*/
-checkpoints/
-data/cleargrasp_dataset/
-data/raw_backgrounds/
-data/processed_dataset*/
-*.tar.gz
 *.exr
-
-# Keep these
-!*.py
-!*.tex
-!*.bib
-!*.pdf
-!*.json
-!*.md
-!*.txt
+*.tar.gz

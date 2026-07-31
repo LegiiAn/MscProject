@@ -1,0 +1,94 @@
+{
+  "checkpoint": "lora_best",
+  "n_frames": 572,
+  "summary": {
+    "train_phrase": {
+      "instruction": "pick up the transparent plastic bottle",
+      "target_class": "rigid_plastic",
+      "n_target_present": 235,
+      "parsed": 85,
+      "parse_fail": 150,
+      "parse_fail_pct": 63.829787234042556,
+      "on_target": 3,
+      "on_target_pct": 1.2765957446808511,
+      "on_target_ci": [
+        0.435082340847915,
+        3.6854728723142807
+      ],
+      "on_object": 20,
+      "on_object_pct": 8.51063829787234,
+      "baselines": {
+        "n": 235,
+        "centre_prior_pct": 3.8297872340425534,
+        "uniform_pct": 2.127659574468085,
+        "on_object_pct": 14.893617021276595
+      }
+    },
+    "native_phrase": {
+      "instruction": "pick up the rigid plastic",
+      "target_class": "rigid_plastic",
+      "n_target_present": 235,
+      "parsed": 1,
+      "parse_fail": 234,
+      "parse_fail_pct": 99.57446808510639,
+      "on_target": 0,
+      "on_target_pct": 0.0,
+      "on_target_ci": [
+        0.0,
+        1.6084300222406815
+      ],
+      "on_object": 0,
+      "on_object_pct": 0.0,
+      "baselines": {
+        "n": 235,
+        "centre_prior_pct": 3.8297872340425534,
+        "uniform_pct": 2.127659574468085,
+        "on_object_pct": 12.76595744680851
+      }
+    },
+    "generic": {
+      "instruction": "pick up the plastic",
+      "target_class": "rigid_plastic",
+      "n_target_present": 235,
+      "parsed": 0,
+      "parse_fail": 235,
+      "parse_fail_pct": 100.0,
+      "on_target": 0,
+      "on_target_pct": 0.0,
+      "on_target_ci": [
+        0.0,
+        1.6084300222406815
+      ],
+      "on_object": 0,
+      "on_object_pct": 0.0,
+      "baselines": {
+        "n": 235,
+        "centre_prior_pct": 3.8297872340425534,
+        "uniform_pct": 1.2765957446808511,
+        "on_object_pct": 16.595744680851062
+      }
+    },
+    "cardboard": {
+      "instruction": "pick up the cardboard",
+      "target_class": "cardboard",
+      "n_target_present": 543,
+      "parsed": 0,
+      "parse_fail": 543,
+      "parse_fail_pct": 100.0,
+      "on_target": 0,
+      "on_target_pct": 0.0,
+      "on_target_ci": [
+        0.0,
+        0.7025069051074387
+      ],
+      "on_object": 0,
+      "on_object_pct": 0.0,
+      "baselines": {
+        "n": 543,
+        "centre_prior_pct": 17.863720073664826,
+        "uniform_pct": 11.41804788213628,
+        "on_object_pct": 67.95580110497238
+      }
+    }
+  }
+}

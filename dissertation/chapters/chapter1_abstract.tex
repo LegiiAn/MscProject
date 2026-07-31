@@ -1,0 +1,23 @@
+% ==============================================================
+% ABSTRACT (frontmatter) --- handbook limit: 350 words
+% Current length: ~300 words. Keywords included at bottom.
+% ==============================================================
+
+\begin{abstract}
+Transparent plastics defeat the active infrared depth sensors on which robotic sorting depends, and no corpus of robot demonstrations exists for transparent waste---jointly blocking the application of modern Vision-Language-Action (VLA) models to a commercially significant recycling problem. This dissertation investigates whether a 7-billion-parameter VLA (OpenVLA) can be adapted to transparent-waste grasp targeting using exclusively synthetic supervision, alongside a learned software repair of the depth-sensing failure.
+
+A three-stage pipeline was designed and evaluated. ReSort-IT, a procedural generator, composites transparent-object renders onto varied backgrounds and derives per-image grasp targets and discretised action tokens, producing 44{,}077 training and evaluation triplets in its final mixed iteration, with background-identity-controlled data splits. A dual-head DeepLabV3 network predicts surface normals and segmentation from RGB, feeding a perspective-corrected Poisson solver that reconstructs metric depth over corrupted regions. The VLA is adapted with Low-Rank Adaptation (0.22\% trainable parameters) under 4-bit quantisation on a single GPU.
+
+Results are reported with statistical testing throughout. The perception module attains 19.6$^{\circ}$ mean normal error and 91\% IoU in distribution, generalising to unseen shapes in proportion to geometric similarity. A four-way ablation shows the depth solver matches a strong inpainting baseline given perfect normals, and isolates a 0.28\,m RMSE cost attributable solely to perception error. An initial training configuration collapsed into shortcut memorisation concealed by 97.7\% token accuracy and zero training loss; with per-sample target diversity, background decorrelation, and seam removal enforced, the policy achieved genuinely image-conditioned predictions whose predictions vary with image content, unlike the constant-output memorising baseline (mean error 27.6 bins, $\approx$11% of image extent). A second training iteration---with validity-guaranteed labels, a 50/50
+native/composite training mix, and encoder-native resolution---nearly
+tripled the exact on-target grasp rate from 2.6\% to 7.2\%, with a
+diagnostic type breakdown (11.3\% on native frames, 3.1\% on composites)
+directly attributing the improvement to the restoration of
+transparency-specific visual cues that compositing removes.
+ End-to-end throughput is 0.26\,FPS, bounded by the CPU depth solver (65\%) rather than the language model.
+
+The work contributes a documented diagnosis of action-supervision shortcut learning, a quantified perception-to-depth error propagation measurement, and a costed feasibility map for synthetic-only VLA training on transparent waste.
+
+\vspace{1em}
+\noindent\textbf{Keywords:} Vision-Language-Action models; transparent object perception; robotic waste sorting; synthetic data generation; depth reconstruction; parameter-efficient fine-tuning.
+\end{abstract}

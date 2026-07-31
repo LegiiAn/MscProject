@@ -1,0 +1,46 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+\section{Motivation}
+\label{sec:motivation}
+
+Automated waste sorting is a prerequisite for economically viable recycling at scale. Robotic sorting systems have matured considerably for opaque materials, where colour, texture, and reliable depth sensing support both recognition and manipulation~\citep{koskinopoulou2021, lubongo2024}. Transparent plastics, however, remain a persistent blind spot. Polyethylene terephthalate (PET) bottles and similar clear containers constitute a large and valuable fraction of the recyclable waste stream, yet they defeat the active infrared depth sensors on which most robotic manipulation pipelines depend: structured light refracts through and reflects off transparent surfaces, so the sensor returns missing or corrupted depth measurements precisely over the objects that must be grasped~\citep{sajjan2020}.
+
+At the same time, a new class of manipulation policy has emerged. Vision-Language-Action (VLA) models such as RT-2~\citep{zitkovich2023} and OpenVLA~\citep{kim2024} couple large pre-trained vision-language backbones to robot action decoding, promising semantic flexibility that conventional sorting pipelines lack: the ability to follow natural-language instructions and to draw on web-scale visual knowledge when confronting object categories absent from their robot training data. These properties are directly relevant to waste sorting, where the variety of incoming items is effectively unbounded. However, VLAs are trained on large corpora of real robot demonstrations, and no such corpus exists for transparent waste manipulation; collecting one at the required scale is impractical within realistic project constraints.
+
+This dissertation sits at the intersection of these two problems. It asks whether a modern VLA can be adapted to transparent-object sorting \emph{without} real robot demonstrations, using procedurally generated synthetic data, and whether the depth-sensing failure can be repaired in software by a learned perception front-end, so that the combined system produces metrically meaningful grasp targets.
+
+\section{Aim and Objectives}
+\label{sec:aims}
+
+The aim of this work is to design, implement, and quantitatively evaluate a cascaded software pipeline for language-conditioned grasp-target prediction on transparent plastic waste, in which all training supervision is generated synthetically.
+
+This aim is decomposed into four objectives:
+
+\begin{enumerate}
+    \item To construct an automated data generation framework (ReSort-IT) that composites transparent-object assets onto varied backgrounds and derives per-image grasp targets and action-token labels without manual annotation.
+    \item To train and evaluate an RGB-only perception module that predicts surface normals and segmentation masks for transparent objects, and to quantify its generalisation to object shapes never seen in training.
+    \item To reconstruct metric depth over the corrupted transparent regions from the predicted geometry, and to establish through controlled ablation whether this reconstruction outperforms geometry-unaware baselines.
+    \item To fine-tune a 7-billion-parameter VLA (OpenVLA) on the synthetic data using parameter-efficient adaptation, and to measure the spatial accuracy of its grasp-target predictions, the degree to which that accuracy supports physically plausible grasps, and the computational cost of the full pipeline.
+\end{enumerate}
+
+The corresponding research questions are:
+
+\begin{itemize}
+    \item[\textbf{RQ1}] Can procedurally composited synthetic data provide sufficient supervision for a VLA to learn image-conditioned spatial grounding of transparent objects, and what properties of the data determine success or failure?
+    \item[\textbf{RQ2}] How accurately does an RGB-only convolutional network recover the surface geometry of transparent objects, and how does that accuracy degrade on unseen object categories?
+    \item[\textbf{RQ3}] Does surface-normal-guided depth reconstruction improve on geometry-unaware inpainting, and how does error in the predicted normals propagate into the reconstructed depth?
+    \item[\textbf{RQ4}] Is the integrated pipeline computationally feasible for deployment on a moving conveyor, and if not, which component bounds its throughput?
+\end{itemize}
+
+\textbf{[PLACEHOLDER --- RQ5 to be added once the semantic-reasoning experiment is complete: Does the fine-tuned policy condition its spatial predictions on the language instruction, selecting between different object categories present in the same scene?]}
+
+\section{Contributions}
+\label{sec:contributions}
+
+The principal contributions of this dissertation are: (i)~ReSort-IT, a procedural pipeline that converts static transparent-object renders into VLA-ready image--language--action triplets, together with an empirical analysis of the data properties (target diversity, background decorrelation, seam removal) that separate genuine spatial learning from memorisation; (ii)~a quantified error-propagation analysis linking surface-normal prediction error to downstream metric depth error, obtained through a four-way controlled ablation with statistical significance testing; and (iii)~an honest end-to-end characterisation of a synthetic-only VLA sorting pipeline, including per-stage latency and a grasp-feasibility proxy, that identifies the current bottlenecks and their implications for real deployment.
+
+\section{Dissertation Structure}
+\label{sec:structure}
+
+Chapter~2 reviews the literature on robotic waste sorting, transparent-object perception, and Vision-Language-Action models, and locates the research gap this work addresses. Chapter~3 details the methodology: the ReSort-IT data pipeline, the dual-head perception network and Poisson depth solver, the LoRA fine-tuning protocol, and the evaluation design. Chapter~4 presents the quantitative results for each component and for the integrated system. Chapter~5 discusses the findings in relation to the research questions and the wider literature. Chapter~6 concludes, states the limitations of the study, and sets out recommendations for future work.

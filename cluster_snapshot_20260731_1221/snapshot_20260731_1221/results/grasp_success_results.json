@@ -1,0 +1,33 @@
+{
+  "n_evaluated": 190,
+  "on_target": {
+    "count": 5,
+    "rate_pct": 2.6315789473684212,
+    "wilson_ci_95": [
+      1.1291598467941315,
+      6.011515838920391
+    ]
+  },
+  "on_any_object": {
+    "count": 8,
+    "rate_pct": 4.2105263157894735,
+    "wilson_ci_95": [
+      2.14870522061478,
+      8.087281275575922
+    ]
+  },
+  "proximity_40px": {
+    "count": 32,
+    "rate_pct": 16.842105263157894,
+    "wilson_ci_95": [
+      12.189967069977396,
+      22.808505910022767
+    ]
+  },
+  "gt_label_validity_pct": 90.0,
+  "mean_pred_gt_dist_px": 110.48442572473435,
+  "median_pred_gt_dist_px": 91.57169850505043,
+  "mean_miss_dist_to_target_px": 92.73459114277455,
+  "parse_failures": 10,
+  "checkpoint": "lora_epoch_2_step_13000"
+}
