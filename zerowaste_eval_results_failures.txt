@@ -1,0 +1,39 @@
+train_phrase: pick up the transparent plastic bottle
+[01_frame_000295] 'Out: 話收些非❯2忠</s>'
+[01_frame_000305] 'Out: 131>단ף忠</s>'
+[01_frame_000325] 'Out: ὺ6現20></s>'
+[01_frame_000335] 'Out: 项麻20番ṯŸ</s>'
+[01_frame_000355] 'Out: 計连给样幸些Ÿ</s>'
+[01_frame_000365] 'Out: 々̍음방些溪</s>'
+[01_frame_049500] 'Out: 128>187</s>'
+[01_frame_049600] 'Out: 菜120>17</s>'
+
+=== native_phrase: pick up the rigid plastic ===
+[01_frame_000295] 'Out: 巴菜進頭Έ错忠</s>'
+[01_frame_000305] 'Out: ো0还ずರ军忠</s>'
+[01_frame_000315] 'Out: 项助회।孝월忠</s>'
+[01_frame_000325] 'Out: 渡雅회타看雅忠</s>'
+[01_frame_000335] 'Out: 项唐止给।ὀ忠</s>'
+[01_frame_000345] 'Out: 越।명书彦ರ忠</s>'
+[01_frame_000355] 'Out: 项唐।変ҡ达Ÿ</s>'
+[01_frame_000365] 'Out: 唐岩深望梅书忠</s>'
+
+=== generic: pick up the plastic ===
+[01_frame_000295] 'Out: 차̍역庄隆設Ÿ</s>'
+[01_frame_000305] 'Out: ̍隆々鬼̍ΈŸ</s>'
+[01_frame_000315] 'Out: 池深导ữ孝菜忠</s>'
+[01_frame_000325] 'Out: 頭专池麻ὺỳŸ</s>'
+[01_frame_000335] 'Out: 项操些ず甲构Ÿ</s>'
+[01_frame_000345] 'Out: 越।丁试▓唐忠</s>'
+[01_frame_000355] 'Out: 頭ো删彦設群Ÿ</s>'
+[01_frame_000365] 'Out: 방ම들ശ방ほŸ</s>'
+
+=== cardboard: pick up the cardboard ===
+[01_frame_000225] 'Out: 么陈회학尔ව忠</s>'
+[01_frame_000235] 'Out: 渡ರദ丸ᵉ仮忠</s>'
+[01_frame_000245] 'Out: ദো飛ദĦŸŸ</s>'
+[01_frame_000255] 'Out: ರ唐池池彦내Ÿ</s>'
+[01_frame_000265] 'Out: 渡么深ずರ试忠</s>'
+[01_frame_000275] 'Out: ҡḷḳ健˜ぐ忠</s>'
+[01_frame_000285] 'Out: 만看唐ರ進望忠</s>'
+[01_frame_000295] 'Out: 차̍些모ˇ喜Ÿ</s>'

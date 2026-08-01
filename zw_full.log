@@ -1,0 +1,62 @@
+/home/mmv4000/MscProject/vla_sorting_env/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:189: UserWarning: The `resume_download` argument is deprecated and ignored in `hf_hub_download`. Downloads always resume whenever possible.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/mmv4000/MscProject/vla_sorting_env/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:189: UserWarning: The `resume_download` argument is deprecated and ignored in `hf_hub_download`. Downloads always resume whenever possible.
+  warnings.warn(
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+The model weights are not tied. Please use the `tie_weights` method before using the `infer_auto_device` function.
+[DATA] 572 val frames
+[INIT] processor + model lora_best (4-bit)...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.53s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.44s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.09s/it]
+/home/mmv4000/MscProject/vla_sorting_env/lib/python3.12/site-packages/bitsandbytes/backends/cuda/ops.py:468: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+[SELF-CHECK] example prompt: 'In: What action should the robot take to pick up the cardboard\nOut: '
+[EVAL] 572 frames x 4 instructions...
+  25/572
+  50/572
+  75/572
+  100/572
+  125/572
+  150/572
+  175/572
+  200/572
+  225/572
+  250/572
+  275/572
+  300/572
+  325/572
+  350/572
+  375/572
+  400/572
+  425/572
+  450/572
+  475/572
+  500/572
+  525/572
+  550/572
+
+============================================================================================
+ZEROWASTE-f REAL-WORLD EVALUATION — lora_best
+============================================================================================
+condition     target              PARSE-FAIL           ON-TARGET           ON-OBJECT
+--------------------------------------------------------------------------------------------
+train_phrase  rigid_plastic 150/235  63.8% [58,70]  3/235   1.3% [0,4] 20/235   8.5% [6,13]
+native_phrase rigid_plastic 234/235  99.6% [98,100]  0/235   0.0% [0,2]  0/235   0.0% [0,2]
+generic       rigid_plastic 235/235 100.0% [98,100]  0/235   0.0% [0,2]  0/235   0.0% [0,2]
+cardboard     cardboard     543/543 100.0% [99,100]  0/543   0.0% [0,1]  0/543   0.0% [0,1]
+
+--------------------------------------------------------------------------------------------
+BASELINES (recomputed on ZeroWaste, over each condition's target-present frames)
+condition           centre-prior      uniform-rand      rand-on-object
+--------------------------------------------------------------------------------------------
+train_phrase    9/235   3.8% [2,7]  5/235   2.1% [1,5] 35/235  14.9% [11,20]
+native_phrase   9/235   3.8% [2,7]  5/235   2.1% [1,5] 30/235  12.8% [9,18]
+generic         9/235   3.8% [2,7]  3/235   1.3% [0,4] 39/235  16.6% [12,22]
+cardboard      97/543  17.9% [15,21] 62/543  11.4% [9,14]369/543  68.0% [64,72]
+============================================================================================
+READ IT LIKE THIS:
+  ON-TARGET at/below centre-prior -> the policy does NOT transfer to real images (expected).
+  Compare train_phrase vs native_phrase vs generic: does phrasing matter on real data?
+  cardboard is the one honest discrimination datapoint (a 2nd class actually present).
+[SAVED] zerowaste_eval_results.json
+[SAVED] zerowaste_eval_results_failures.txt  <- what the model emits on failure
