@@ -11,33 +11,33 @@
       "ci_high": 0.13058766543865202
     },
     "poisson_gt_normals": {
-      "mean": 0.13641696494072675,
-      "ci_low": 0.12499013988021761,
-      "ci_high": 0.14897306664008644
+      "mean": 0.12878646053373813,
+      "ci_low": 0.11928839944303035,
+      "ci_high": 0.13897701687179503
     },
     "poisson_pred_normals": {
-      "mean": 0.41596812903881075,
-      "ci_low": 0.3936380753219128,
-      "ci_high": 0.43901429180428386
+      "mean": 0.33786006048321726,
+      "ci_low": 0.3187689742818475,
+      "ci_high": 0.35749799059703946
     }
   },
   "wilcoxon_tests": {
     "inpaint_baseline_vs_poisson_gt_normals": {
-      "statistic": 1849.0,
-      "p_value": 0.02010901408480256,
-      "median_diff": -0.0034941285848617554,
-      "significant": true
+      "statistic": 2390.0,
+      "p_value": 0.6425231921087418,
+      "median_diff": -6.960704922676086e-05,
+      "significant": false
     },
     "inpaint_baseline_vs_poisson_pred_normals": {
-      "statistic": 0.0,
-      "p_value": 3.896559845095909e-18,
-      "median_diff": -0.2943776994943619,
+      "statistic": 1.0,
+      "p_value": 4.0161556854627e-18,
+      "median_diff": -0.22033413872122765,
       "significant": true
     },
     "poisson_gt_normals_vs_poisson_pred_normals": {
-      "statistic": 12.0,
-      "p_value": 5.596247901468035e-18,
-      "median_diff": -0.2775886654853821,
+      "statistic": 10.0,
+      "p_value": 5.269204481546392e-18,
+      "median_diff": -0.20961257070302963,
       "significant": true
     },
     "raw_corrupted_vs_inpaint_baseline": {
