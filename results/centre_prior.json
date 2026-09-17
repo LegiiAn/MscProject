@@ -1,9 +1,0 @@
-{
-  "split": "val",
-  "centre_bin": 128,
-  "n": 6620,
-  "centre_prior_mean_l1_bins": 34.189425981873114,
-  "centre_prior_median_l1_bins": 31.0,
-  "centre_prior_l1_x": 28.53867069486405,
-  "centre_prior_l1_y": 39.840181268882176
-}

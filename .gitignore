@@ -10,3 +10,24 @@ __pycache__/
 *.pth
 *.exr
 *.tar.gz
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+
+# OS and local files
+desktop.ini
+*.pptx
+test.py
+
+# Large data and checkpoints
+vla_checkpoints_run3/
+results/*.json
