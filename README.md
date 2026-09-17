@@ -24,4 +24,4 @@ Standard robot depth sensors fail to detect transparent plastics, and no trainin
 ## Author
 **Méa Vittot**
 Robotics & Artificial Intelligence Engineer
-[LinkedIn](YOUR_LINKEDIN_URL)
+[LinkedIn]( www.linkedin.com/in/meavittot)
