@@ -1,2 +1,0 @@
-36b3a0cdd8c907d7156b10882e1b9546  /home/mmv4000/snapshot_20260731_1221.tar.gz
-8efab537ca73463f7f5b4707ef9e61cd  data/processed_dataset/annotations.json
