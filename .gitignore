@@ -1,12 +1,12 @@
-vla_sorting_env/
-__pycache__/
-*.pyc
 data/
 checkpoints/
-.vscode/
 vla_checkpoints/
-dissertation/
-vla_comprehensive_evaluation.pdf
-perception_surface_reconstruction_matrix.pdf
+vla_checkpoints_run1/
+vla_sorting_env/
+dissertation/chapters/
+dissertation/frontmatter/
 ARCHIVE/
-Dissertation Handbook ROBOTIC - EECE MSC PGT - Ver 3.0 - March 24 - RM.pdf
+__pycache__/
+*.pth
+*.exr
+*.tar.gz

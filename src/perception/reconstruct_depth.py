@@ -1,88 +1,157 @@
 import os
-# 1. Force enable OpenEXR decoding capability globally in OpenCV BEFORE importing cv2
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 
 import numpy as np
 import cv2
 from pathlib import Path
+import scipy.sparse as sparse
+import scipy.sparse.linalg as splinalg
 
-def reconstruct_depth_laplacian(raw_depth, predicted_normals, predicted_mask, alpha=0.1):
+
+def reconstruct_depth_poisson(raw_depth, predicted_normals, predicted_mask, lambda_anchor=100):
     """
-    Reconstructs the depth of transparent objects by enforcing surface normal 
-    constraints on the missing depth areas, using background depth as an anchor.
+    Reconstructs 3D depth by integrating predicted surface normals via
+    a sparse least-squares system (Poisson-style depth reconstruction).
+    
+    Enforces:
+      - X-gradient constraints: Z(y,x+1) - Z(y,x) = p(y,x)
+      - Y-gradient constraints: Z(y+1,x) - Z(y,x) = q(y,x) 
+      - Anchor constraints: Z(y,x) = raw_depth(y,x) for valid background pixels
+      
+    Uses fully vectorized numpy operations instead of nested Python loops
+    for practical runtime on full-resolution images.
     """
     H, W = raw_depth.shape
-    reconstructed_depth = raw_depth.copy()
+    num_pixels = H * W
     
-    # Identify transparent plastic target areas needing filling
-    hole_mask = (predicted_mask > 0) | (raw_depth == 0)
+    # Pixel index grid for mapping (y, x) -> flat index
+    pixel_indices = np.arange(num_pixels).reshape(H, W)
     
-    Nx, Ny, Nz = predicted_normals[:, :, 0], predicted_normals[:, :, 1], predicted_normals[:, :, 2]
-    Nz_safe = np.where(Nz == 0, 1e-5, Nz)
-    grad_x = -Nx / Nz_safe
-    grad_y = -Ny / Nz_safe
+    # 1. Compute target surface gradients from predicted normals
+    Nx = predicted_normals[:, :, 0]
+    Ny = predicted_normals[:, :, 1]
+    Nz = predicted_normals[:, :, 2]
+    Nz_safe = np.where(np.abs(Nz) < 1e-5, 1e-5, Nz)
+    p = (-Nx / Nz_safe) / fx   # dZ/dx
+    q = (-Ny / Nz_safe) / fy   # dZ/dy
     
-    valid_anchor_mask = ~hole_mask & (raw_depth > 0)
-    if not np.any(valid_anchor_mask):
-        return reconstructed_depth
-
-    kernel = np.ones((5, 5), np.uint8)
-    dilated_mask = cv2.dilate(hole_mask.astype(np.uint8), kernel, iterations=1)
+    # 2. Identify anchor vs hole regions
+    hole_mask = (predicted_mask > 0) | (raw_depth <= 0)
+    anchor_mask = ~hole_mask & (raw_depth > 0)
     
-    # OpenCV Navier-Stokes based inpainting acting as fast local baseline solver
-    reconstructed_depth = cv2.inpaint(
-        raw_depth.astype(np.float32), 
-        dilated_mask, 
-        inpaintRadius=5, 
-        flags=cv2.INPAINT_NS
+    # ── Vectorized constraint construction ──────────────────────────────
+    
+    # --- Constraint Set 1: X-gradient equations ---
+    # Z(y, x+1) - Z(y, x) = p(y, x) for all (y, x) where x < W-1
+    x_current = pixel_indices[:, :-1].ravel()   # flat indices of (y, x)
+    x_next = pixel_indices[:, 1:].ravel()       # flat indices of (y, x+1)
+    n_xgrad = len(x_current)
+    eq_x = np.arange(n_xgrad)
+    
+    rows_x = np.concatenate([eq_x, eq_x])
+    cols_x = np.concatenate([x_next, x_current])
+    data_x = np.concatenate([np.ones(n_xgrad), -np.ones(n_xgrad)])
+    b_x = p[:, :-1].ravel()
+    
+    # --- Constraint Set 2: Y-gradient equations ---
+    # Z(y+1, x) - Z(y, x) = q(y, x) for all (y, x) where y < H-1
+    y_current = pixel_indices[:-1, :].ravel()
+    y_below = pixel_indices[1:, :].ravel()
+    n_ygrad = len(y_current)
+    eq_y = np.arange(n_ygrad) + n_xgrad  # offset equation indices
+    
+    rows_y = np.concatenate([eq_y, eq_y])
+    cols_y = np.concatenate([y_below, y_current])
+    data_y = np.concatenate([np.ones(n_ygrad), -np.ones(n_ygrad)])
+    b_y = q[:-1, :].ravel()
+    
+    # --- Constraint Set 3: Anchor equations ---
+    # lambda * Z(y, x) = lambda * raw_depth(y, x) for valid background pixels
+    anchor_ys, anchor_xs = np.where(anchor_mask)
+    anchor_flat = pixel_indices[anchor_ys, anchor_xs]
+    n_anchors = len(anchor_flat)
+    eq_a = np.arange(n_anchors) + n_xgrad + n_ygrad
+    
+    rows_a = eq_a
+    cols_a = anchor_flat
+    data_a = np.full(n_anchors, lambda_anchor)
+    b_a = lambda_anchor * raw_depth[anchor_ys, anchor_xs]
+    
+    # --- Assemble the full sparse system ---
+    total_eqs = n_xgrad + n_ygrad + n_anchors
+    
+    all_rows = np.concatenate([rows_x, rows_y, rows_a])
+    all_cols = np.concatenate([cols_x, cols_y, cols_a])
+    all_data = np.concatenate([data_x, data_y, data_a])
+    all_b = np.concatenate([b_x, b_y, b_a]).astype(np.float64)
+    
+    A = sparse.csr_matrix(
+        (all_data, (all_rows, all_cols)),
+        shape=(total_eqs, num_pixels),
     )
     
-    # Inject predicted surface normal curvature adjustments back into the depth map
-    reconstructed_depth[hole_mask] += (grad_x[hole_mask] + grad_y[hole_mask]) * alpha * 0.001
+    print(f"[SOLVER] {total_eqs:,} equations, {num_pixels:,} unknowns, "
+          f"{len(all_data):,} non-zeros, {n_anchors:,} anchors")
     
-    return np.clip(reconstructed_depth, 0, 2.0)
+    # 3. Solve via sparse LSQR
+    result = splinalg.lsqr(A, all_b, iter_lim=500)
+    x_solution = result[0]
+    istop = result[1]
+    itn = result[2]
+    print(f"[SOLVER] Converged: stop_reason={istop}, iterations={itn}")
+    
+    reconstructed = x_solution.reshape(H, W).astype(np.float32)
+    return np.clip(reconstructed, 0, 2.0)
+
 
 def main():
-    BASE_DIR = Path(r"C:\Users\m_vit\Documents\MscProject\data\cleargrasp_dataset\cleargrasp-dataset-train\square-plastic-bottle-train")
+    """Validation test using synthetic hemispherical normals on a real depth map."""
+    BASE_DIR = Path(r"C:\Users\m_vit\Documents\MscProject\data\cleargrasp_dataset"
+                    r"\cleargrasp-dataset-train\square-plastic-bottle-train")
     depth_dir = BASE_DIR / "depth-imgs-rectified"
     
     if not depth_dir.exists():
-        print(f"[ERROR] Cannot locate rectified depth maps directory at {depth_dir}")
+        print(f"[ERROR] Directory not found: {depth_dir}")
         return
-        
-    # Look for .exr files as verified by you
+    
     try:
-        sample_depth_path = next(depth_dir.glob("*.exr"))
+        sample_path = next(depth_dir.glob("*.exr"))
     except StopIteration:
-        print(f"[ERROR] No .exr files found inside {depth_dir}")
+        print("[ERROR] No .exr files found.")
         return
-        
-    # Load sample EXR depth map (requires IMREAD_UNCHANGED for depth floats)
-    raw_depth_img = cv2.imread(str(sample_depth_path), cv2.IMREAD_UNCHANGED)
-    if raw_depth_img is None:
-        print("[ERROR] Failed to load sample EXR depth file matrix.")
+    
+    raw = cv2.imread(str(sample_path), cv2.IMREAD_UNCHANGED)
+    if raw is None:
+        print("[ERROR] Failed to load depth file.")
         return
-        
-    # Multi-channel check: EXR depth maps can load as 3-channel; drop to single channel if needed
-    if len(raw_depth_img.shape) == 3:
-        raw_depth_meters = raw_depth_img[:, :, 0].astype(np.float32)
-    else:
-        raw_depth_meters = raw_depth_img.astype(np.float32)
     
-    H, W = raw_depth_meters.shape
+    raw_depth = (raw[:, :, 0] if len(raw.shape) == 3 else raw).astype(np.float32)
+    H, W = raw_depth.shape
     
-    # Mock data arrays for execution check
-    mock_normals = np.zeros((H, W, 3), dtype=np.float32)
-    mock_normals[:, :, 2] = 1.0  
-    mock_mask = np.zeros((H, W), dtype=np.uint8)
-    mock_mask[H//4:3*H//4, W//4:3*W//4] = 1  
+    # Downsample for fast test
+    scale = 0.25
+    H_s, W_s = int(H * scale), int(W * scale)
+    depth_small = cv2.resize(raw_depth, (W_s, H_s), interpolation=cv2.INTER_NEAREST)
     
-    print("[PROCESSING] Running global depth reconstruction mathematical solver check...")
-    fixed_depth = reconstruct_depth_laplacian(raw_depth_meters, mock_normals, mock_mask)
+    # Synthetic hemisphere normals for testing
+    normals = np.zeros((H_s, W_s, 3), dtype=np.float32)
+    yy, xx = np.mgrid[:H_s, :W_s]
+    cx, cy = W_s // 2, H_s // 2
+    r_sq = (xx - cx) ** 2 + (yy - cy) ** 2
+    radius = min(H_s, W_s) // 3
+    sphere = r_sq < radius ** 2
     
-    print(f"[SUCCESS] Depth Solver validated successfully.")
-    print(f"  Input Matrix Bounds: Min={raw_depth_meters.min():.4f}m, Max={raw_depth_meters.max():.4f}m")
-    print(f"  Output Matrix Bounds: Min={fixed_depth.min():.4f}m, Max={fixed_depth.max():.4f}m")
+    zn = np.sqrt(np.maximum(0, radius ** 2 - r_sq)) / radius
+    normals[:, :, 0] = np.where(sphere, (xx - cx) / radius, 0.0)
+    normals[:, :, 1] = np.where(sphere, (yy - cy) / radius, 0.0)
+    normals[:, :, 2] = np.where(sphere, zn, 1.0)
+    
+    print(f"[TEST] Running on {H_s}x{W_s} downsampled image...")
+    result = reconstruct_depth_poisson(depth_small, normals, sphere.astype(np.uint8))
+    
+    print(f"[OK] Input range: [{depth_small.min():.4f}, {depth_small.max():.4f}]m")
+    print(f"[OK] Output range: [{result.min():.4f}, {result.max():.4f}]m")
+
 
 if __name__ == "__main__":
     main()

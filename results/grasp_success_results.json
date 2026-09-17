@@ -1,0 +1,12 @@
+{
+  "n_evaluated": 197,
+  "success_rate_pct": 14.720812182741117,
+  "gt_success_rate_pct": 100.0,
+  "mean_pred_gt_dist_px": 121.2671203646904,
+  "median_pred_gt_dist_px": 95.85927185202274,
+  "mean_miss_dist_to_mask_px": 97.66151235310623,
+  "wilson_ci_95": [
+    10.449138365896612,
+    20.34209213615077
+  ]
+}

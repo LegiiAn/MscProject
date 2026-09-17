@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{report}
+
+% Core System Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry} % Standard University Margins
+\usepackage{setspace}
+\onehalfspacing % Mandatory 1.5 line spacing
+
+% Mathematics and Engineering Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{abstract}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib} % Numeric citation indexing
+
+% Code Listing Configuration
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=blue
+}
+
+\begin{document}
+
+% Front Matter Mapping
+\input{frontmatter/titlepage}
+\input{frontmatter/declaration}
+
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\newpage
+\pagenumbering{arabic}
+
+% Chapter Inclusions
+\include{chapters/chapter1_abstract}
+\include{chapters/chapter1_intro}
+\include{chapters/chapter2_litreview}
+\include{chapters/chapter3_methodology}
+\include{chapters/chapter4_results}
+\include{chapters/chapter5_discussion}
+\include{chapters/chapter6_conclusion}
+
+% Bibliography Mapping
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

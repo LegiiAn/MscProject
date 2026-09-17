@@ -1,0 +1,55 @@
+\chapter{Conclusions and Recommendations}
+\label{ch:conclusion}
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+This dissertation set out to determine whether a modern Vision-Language-Action model can be adapted to transparent plastic waste sorting without real robot demonstrations, using procedurally composited synthetic data, alongside a learned repair of the depth-sensing failure that transparent materials cause. A three-stage pipeline was designed, implemented, and quantitatively evaluated: the ReSort-IT data generator producing image--language--action triplets with verified per-sample grasp targets; a dual-head DeepLabV3 perception module feeding a perspective-corrected Poisson depth solver; and a LoRA-adapted OpenVLA-7B policy trained and evaluated entirely on the synthetic data.
+
+With respect to the research questions, the work concludes:
+
+\textbf{RQ1 (synthetic supervision).} Composited synthetic data alone is
+insufficient for precise transparent-object localisation: the
+first-generation policy achieved only 2.6\% on-target grasp placement with
+mean spatial error indistinguishable from a positional prior. Correcting
+three identified data defects---invalid labels, missing transparency cues,
+and redundant downsampling---and mixing authentic ClearGrasp renders at 50\%
+nearly tripled the on-target rate to 7.2\%, with a diagnostic type
+breakdown (11.3\% on native frames vs.\ 3.1\% on composites) that directly
+attributes the improvement to the restoration of refraction, shadow, and
+specular cues absent from composites. Data pipeline design determines
+whether VLA spatial learning occurs; data \emph{fidelity}---specifically
+the presence of transparency-specific visual physics---determines how much
+of it occurs.
+
+\textbf{RQ2 (transparent-object perception).} An RGB-only network recovers transparent-object geometry with 19.6$^{\circ}$ mean surface-normal error and 91\% segmentation IoU within its training category. On categories never seen in training, segmentation degrades modestly ($\sim$77\% IoU) while normal estimation degrades in proportion to geometric dissimilarity from the training shapes (25.5$^{\circ}$ on a similar unseen object; 34.1$^{\circ}$ on a dissimilar one). Shape diversity in training data, rather than volume alone, governs geometric generalisation.
+
+\textbf{RQ3 (depth reconstruction).} With perfect normal input, the Poisson solver statistically matches a strong inpainting baseline (0.136\,m vs.\ 0.123\,m RMSE; median difference 3.5\,mm), validating the implementation; with predicted normals it reaches 0.416\,m. The 0.28\,m gap cleanly quantifies how perception error propagates into metric depth---the dissertation's sharpest single measurement---and identifies normal accuracy as the highest-leverage improvement in the geometry path. For the shallow object geometries evaluated, geometry-unaware inpainting is a competitive and vastly cheaper baseline, a boundary condition the source literature does not emphasise.
+
+\textbf{RQ4 (feasibility).} The policy's 27.6-bin mean spatial error ($\approx$11\% of image extent) supports coarse localisation but not reliable grasp targeting: 14.7\% of predictions met a conservative grasp-proximity criterion (95\% CI [10.4\%, 20.3\%]). The pipeline runs at 0.26 frames per second on an A100, bounded not by the 7-billion-parameter language model (35\% of frame time) but by the CPU sparse depth solver (65\%)---an inversion of the intuitive expectation with direct consequences for optimisation priorities.
+
+\textbf{[PLACEHOLDER --- RQ5 conclusion on language-conditioned target selection, pending the multi-category semantic-reasoning experiment.]}
+
+\section{Contributions to Knowledge and Practice}
+\label{sec:contributions_final}
+
+For the academic audience, the work contributes: a documented, diagnosed instance of shortcut memorisation specific to composited \emph{action} supervision, together with the metric practices (per-coordinate error reporting; zero-loss-as-alarm) that expose it; a controlled error-propagation measurement linking normal-estimation error to metric depth error through a validated solver; and evidence on the shape-dependence of transparent-object geometric generalisation. For practitioners building sorting systems, the work delivers a costed map of the synthetic-only route: which data controls are non-negotiable, where a trivial inpainting baseline suffices and where it will not, and which pipeline stage to accelerate first for belt-rate operation.
+
+\section{Recommendations and Future Work}
+\label{sec:future_work}
+
+The findings motivate the following directions, ordered by expected return:
+
+\begin{enumerate}
+    \item \textbf{Exact grasp measurement.} Replace the conservative proximity criterion with the mask-exact target-on-object test (requiring only that composited masks be saved at generation time). This corrects the headline feasibility figure at negligible cost. \textbf{[If completed before submission, this item moves into Chapter~4 and is removed here.]}
+    \item \textbf{Multi-category, instruction-conditioned training.} Extend ReSort-IT to all five ClearGrasp categories with per-category instructions, and evaluate instruction following on two-object scenes---testing whether the policy selects the \emph{commanded} object. This directly addresses the semantic-flexibility motivation for using a VLA. \textbf{[In progress; if completed, this becomes Section~\ref{sec:res_semantic} and is removed here.]}
+    \item \textbf{Data fidelity.} Replace alpha compositing with physically based rendering (or augment composites with synthetic refraction and contact shadows), and broaden the shape distribution of training assets. Both the policy's precision ceiling and the perception module's OOD degradation trace to these gaps.
+    \item \textbf{Solver acceleration.} Port the sparse depth reconstruction to GPU (or amortise it into the perception network as a depth-completion head) to remove the 65\% latency share and approach conveyor-rate throughput.
+    \item \textbf{Physical validation.} Close the loop on real hardware in staged steps: real RGB-D capture of transparent objects to measure the policy's sim-to-real gap; open-loop reprojection accuracy in millimetres against a calibrated camera--robot transform; and only then live picking trials. Simulation of the ABB IRB~360 cell in Gazebo is a useful intermediate step if time permits.
+    \item \textbf{Spatially targeted supervision.} Incorporate pointing-style auxiliary data or spatial representations shown to sharpen VLA localisation~\citep{yuan2024, qu2025}, attacking the 28-bin precision ceiling from the representation side as well as the data side.
+\end{enumerate}
+
+\section{Closing Remark}
+\label{sec:closing}
+
+The value of this dissertation lies as much in what it measured as in what it built. Every major claim---that the data pipeline decides whether spatial learning occurs, that perception error costs 0.28\,m of depth accuracy, that the solver and not the language model bounds throughput, that current precision is a factor of several short of grasp tolerance---is a number with a confidence interval or a significance test attached, obtained from a system whose failures were diagnosed as carefully as its successes. That evidentiary discipline, rather than any single component, is what the work most hopes to pass on.

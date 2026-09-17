@@ -1,0 +1,30 @@
+{
+  "raw_corrupted": {
+    "rmse_mean": 0.9297498977184295,
+    "rmse_std": 0.33625542467704367,
+    "mae_mean": 0.9274357572197914,
+    "rel_mean": 1.0,
+    "n_images": 100
+  },
+  "inpaint_baseline": {
+    "rmse_mean": 0.1226713689416647,
+    "rmse_std": 0.0395269013124231,
+    "mae_mean": 0.11018342822790146,
+    "rel_mean": 0.14040973696857692,
+    "n_images": 100
+  },
+  "poisson_gt_normals": {
+    "rmse_mean": 0.13641696494072675,
+    "rmse_std": 0.062361608540203096,
+    "mae_mean": 0.11363554190844298,
+    "rel_mean": 0.1439919002726674,
+    "n_images": 100
+  },
+  "poisson_pred_normals": {
+    "rmse_mean": 0.41596812903881075,
+    "rmse_std": 0.11548690743634023,
+    "mae_mean": 0.2860794894397259,
+    "rel_mean": 0.342315568998456,
+    "n_images": 100
+  }
+}

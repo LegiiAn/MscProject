@@ -1,0 +1,297 @@
+{
+  "checkpoint": "lora_best",
+  "split": "val",
+  "attempted": 200,
+  "summary": {
+    "baseline": {
+      "instruction": "Pick up the transparent plastic bottle.",
+      "attempted": 200,
+      "parsed": 150,
+      "parse_fail": 50,
+      "parse_fail_pct": 25.0,
+      "parse_fail_ci": [
+        19.508076816296533,
+        31.434223479619522
+      ],
+      "on_target_all": 15,
+      "on_target_all_pct": 7.5,
+      "on_target_all_ci": [
+        4.597450705725241,
+        12.004459797332034
+      ],
+      "on_target_given_parsed_pct": 10.0
+    },
+    "paraphrase_1": {
+      "instruction": "Grasp the clear plastic bottle.",
+      "attempted": 200,
+      "parsed": 114,
+      "parse_fail": 86,
+      "parse_fail_pct": 43.0,
+      "parse_fail_ci": [
+        36.334204488394796,
+        49.929639594461705
+      ],
+      "on_target_all": 8,
+      "on_target_all_pct": 4.0,
+      "on_target_all_ci": [
+        2.040538715065641,
+        7.693293829419883
+      ],
+      "on_target_given_parsed_pct": 7.017543859649122
+    },
+    "paraphrase_2": {
+      "instruction": "Pick up the see-through bottle.",
+      "attempted": 200,
+      "parsed": 70,
+      "parse_fail": 130,
+      "parse_fail_pct": 65.0,
+      "parse_fail_ci": [
+        58.16333576186577,
+        71.2712840605846
+      ],
+      "on_target_all": 7,
+      "on_target_all_pct": 3.5,
+      "on_target_all_ci": [
+        1.7055324637357105,
+        7.047146086668134
+      ],
+      "on_target_given_parsed_pct": 10.0
+    },
+    "paraphrase_3": {
+      "instruction": "Select the transparent container.",
+      "attempted": 200,
+      "parsed": 125,
+      "parse_fail": 75,
+      "parse_fail_pct": 37.5,
+      "parse_fail_ci": [
+        31.08532530524515,
+        44.385824842712886
+      ],
+      "on_target_all": 6,
+      "on_target_all_pct": 3.0,
+      "on_target_all_ci": [
+        1.3820125830748327,
+        6.389511973247333
+      ],
+      "on_target_given_parsed_pct": 4.8
+    },
+    "paraphrase_4": {
+      "instruction": "Grab the clear water bottle.",
+      "attempted": 200,
+      "parsed": 98,
+      "parse_fail": 102,
+      "parse_fail_pct": 51.0,
+      "parse_fail_ci": [
+        44.118463270916095,
+        57.84384471724727
+      ],
+      "on_target_all": 5,
+      "on_target_all_pct": 2.5,
+      "on_target_all_ci": [
+        1.0724561470787712,
+        5.717914415161715
+      ],
+      "on_target_given_parsed_pct": 5.1020408163265305
+    },
+    "paraphrase_5": {
+      "instruction": "Retrieve the empty plastic bottle.",
+      "attempted": 200,
+      "parsed": 105,
+      "parse_fail": 95,
+      "parse_fail_pct": 47.5,
+      "parse_fail_ci": [
+        40.691500740098604,
+        54.402729289493
+      ],
+      "on_target_all": 7,
+      "on_target_all_pct": 3.5,
+      "on_target_all_ci": [
+        1.7055324637357105,
+        7.047146086668134
+      ],
+      "on_target_given_parsed_pct": 6.666666666666667
+    },
+    "paraphrase_6": {
+      "instruction": "Lift the transparent water bottle.",
+      "attempted": 200,
+      "parsed": 124,
+      "parse_fail": 76,
+      "parse_fail_pct": 38.0,
+      "parse_fail_ci": [
+        31.558893661239217,
+        44.89341048080049
+      ],
+      "on_target_all": 6,
+      "on_target_all_pct": 3.0,
+      "on_target_all_ci": [
+        1.3820125830748327,
+        6.389511973247333
+      ],
+      "on_target_given_parsed_pct": 4.838709677419355
+    },
+    "paraphrase_7": {
+      "instruction": "Fetch the plastic bottle.",
+      "attempted": 200,
+      "parsed": 128,
+      "parse_fail": 72,
+      "parse_fail_pct": 36.0,
+      "parse_fail_ci": [
+        29.669087731339804,
+        42.85860043437319
+      ],
+      "on_target_all": 4,
+      "on_target_all_pct": 2.0,
+      "on_target_all_ci": [
+        0.7804300176394188,
+        5.028786550519388
+      ],
+      "on_target_given_parsed_pct": 3.125
+    },
+    "absent_can": {
+      "instruction": "Pick up the metal can.",
+      "attempted": 200,
+      "parsed": 58,
+      "parse_fail": 142,
+      "parse_fail_pct": 71.0,
+      "parse_fail_ci": [
+        64.36239464268834,
+        76.84607310874219
+      ],
+      "on_target_all": 5,
+      "on_target_all_pct": 2.5,
+      "on_target_all_ci": [
+        1.0724561470787712,
+        5.717914415161715
+      ],
+      "on_target_given_parsed_pct": 8.620689655172415
+    },
+    "absent_cube": {
+      "instruction": "Pick up the red cube.",
+      "attempted": 200,
+      "parsed": 22,
+      "parse_fail": 178,
+      "parse_fail_pct": 89.0,
+      "parse_fail_ci": [
+        83.90720169908703,
+        92.62280983928396
+      ],
+      "on_target_all": 0,
+      "on_target_all_pct": 0.0,
+      "on_target_all_ci": [
+        0.0,
+        1.8846005918320894
+      ],
+      "on_target_given_parsed_pct": 0.0
+    },
+    "null_generic": {
+      "instruction": "Pick up the object.",
+      "attempted": 200,
+      "parsed": 30,
+      "parse_fail": 170,
+      "parse_fail_pct": 85.0,
+      "parse_fail_ci": [
+        79.39430617334484,
+        89.2864734123727
+      ],
+      "on_target_all": 1,
+      "on_target_all_pct": 0.5,
+      "on_target_all_ci": [
+        0.08831459893662054,
+        2.777439986977148
+      ],
+      "on_target_given_parsed_pct": 3.3333333333333335
+    }
+  },
+  "mcnemar_vs_baseline": {
+    "paraphrase_1": {
+      "metric": "on_target_all",
+      "b": 14,
+      "c": 7,
+      "p": 0.18924713134765625,
+      "parsefail_b": 22,
+      "parsefail_c": 58,
+      "parsefail_p": 7.010573979919961e-05
+    },
+    "paraphrase_2": {
+      "metric": "on_target_all",
+      "b": 13,
+      "c": 5,
+      "p": 0.09625244140625,
+      "parsefail_b": 13,
+      "parsefail_c": 93,
+      "parsefail_p": 4.542762798571598e-16
+    },
+    "paraphrase_3": {
+      "metric": "on_target_all",
+      "b": 15,
+      "c": 6,
+      "p": 0.0783538818359375,
+      "parsefail_b": 27,
+      "parsefail_c": 52,
+      "parsefail_p": 0.006553297670283774
+    },
+    "paraphrase_4": {
+      "metric": "on_target_all",
+      "b": 13,
+      "c": 3,
+      "p": 0.021270751953125,
+      "parsefail_b": 19,
+      "parsefail_c": 71,
+      "parsefail_p": 3.1271822773404575e-08
+    },
+    "paraphrase_5": {
+      "metric": "on_target_all",
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "parsefail_b": 16,
+      "parsefail_c": 61,
+      "parsefail_p": 2.4176312825015983e-07
+    },
+    "paraphrase_6": {
+      "metric": "on_target_all",
+      "b": 14,
+      "c": 5,
+      "p": 0.063568115234375,
+      "parsefail_b": 21,
+      "parsefail_c": 47,
+      "parsefail_p": 0.0021862431776861705
+    },
+    "paraphrase_7": {
+      "metric": "on_target_all",
+      "b": 13,
+      "c": 2,
+      "p": 0.00738525390625,
+      "parsefail_b": 22,
+      "parsefail_c": 44,
+      "parsefail_p": 0.00921048969455458
+    },
+    "absent_can": {
+      "metric": "on_target_all",
+      "b": 14,
+      "c": 4,
+      "p": 0.0308837890625,
+      "parsefail_b": 13,
+      "parsefail_c": 105,
+      "parsefail_p": 4.764406071312224e-19
+    },
+    "absent_cube": {
+      "metric": "on_target_all",
+      "b": 15,
+      "c": 0,
+      "p": 6.103515625e-05,
+      "parsefail_b": 6,
+      "parsefail_c": 134,
+      "parsefail_p": 1.4083083788101097e-32
+    },
+    "null_generic": {
+      "metric": "on_target_all",
+      "b": 15,
+      "c": 1,
+      "p": 0.000518798828125,
+      "parsefail_b": 3,
+      "parsefail_c": 123,
+      "parsefail_p": 7.84059433975869e-33
+    }
+  }
+}

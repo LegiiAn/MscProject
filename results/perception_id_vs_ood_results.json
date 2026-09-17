@@ -1,0 +1,32 @@
+{
+  "square-plastic-bottle-train": {
+    "mean_angular_error": 19.548542022705078,
+    "median_angular_error": 14.285478591918945,
+    "rmse_angular_error": 25.570911407470703,
+    "pct_within_11.25": 39.33531511403778,
+    "pct_within_22.5": 69.4247594149375,
+    "pct_within_30": 79.85462954443382,
+    "mean_iou": 91.09559250357464,
+    "n_images": 11701
+  },
+  "cup-with-waves-val": {
+    "mean_angular_error": 34.061622619628906,
+    "median_angular_error": 22.98561668395996,
+    "rmse_angular_error": 44.03303527832031,
+    "pct_within_11.25": 21.023708909226745,
+    "pct_within_22.5": 49.130323122898766,
+    "pct_within_30": 59.87798258311543,
+    "mean_iou": 77.2827799047646,
+    "n_images": 100
+  },
+  "stemless-plastic-champagne-glass-val": {
+    "mean_angular_error": 25.527629852294922,
+    "median_angular_error": 17.995956420898438,
+    "rmse_angular_error": 33.71011734008789,
+    "pct_within_11.25": 27.819264855440938,
+    "pct_within_22.5": 60.83502833066977,
+    "pct_within_30": 72.35544094144994,
+    "mean_iou": 77.8675004892233,
+    "n_images": 117
+  }
+}
