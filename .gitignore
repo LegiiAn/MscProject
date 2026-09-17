@@ -10,6 +10,7 @@ __pycache__/
 *.pth
 *.exr
 *.tar.gz
+
 # LaTeX build files
 *.aux
 *.bbl
@@ -31,3 +32,32 @@ test.py
 # Large data and checkpoints
 vla_checkpoints_run3/
 results/*.json
+
+# Virtual Environments & OS
+vla_sorting_env/
+__pycache__/
+desktop.ini
+
+# Heavy Data & Model Checkpoints
+data/
+checkpoints/
+vla_checkpoints*/
+cluster_snapshot_*/
+*.tar.gz
+
+# Results, Logs, and Temp Files
+results/
+*.log
+*.txt
+*.json
+test.py
+
+# Raw Images & LaTeX source
+images/
+slides_figs/
+bridge_*.jpg
+dissertation/
+ARCHIVE/
+
+# Presentations
+*.pptx
